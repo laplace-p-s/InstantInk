@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Text Editor</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <textarea id="editor" cols="100" rows="20"></textarea>
+  <button id="save">Save</button>
+
+  <script>
+    $(document).ready(function() {
+      $.get('file.txt', function(data) {
+        $('#editor').val(data);
+      });
+      $('#save').click(function() {
+        $.post(window.location.href, {text: $('#editor').val()}, function() {
+          alert('Saved');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
