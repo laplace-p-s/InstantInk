@@ -5,7 +5,7 @@ import os
 from urllib.parse import parse_qs, urlparse
 
 try:
-    # コマンドライン引数の解析
+    # Parsing command line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('filepath', help="Path to the text file you'd like to edit.")
     args = parser.parse_args()
@@ -41,7 +41,7 @@ try:
             self.end_headers()
             self.wfile.write(b"Saved")
 
-    # サーバの起動
+    # Starting the server
     with socketserver.TCPServer(("", 8000), Handler) as httpd:
         print("Serving at: http://localhost:8000")
         httpd.serve_forever()
