@@ -6,7 +6,7 @@ from urllib.parse import parse_qs, urlparse
 
 try:
     APP_NAME = "InstantInk"  # Application Name
-    APP_VERSION = "1.0.0"  # Application Version
+    APP_VERSION = "1.1.0"  # Application Version
     
     # Parsing command line arguments
     parser = argparse.ArgumentParser()
