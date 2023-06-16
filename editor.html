@@ -13,6 +13,9 @@
                 $.get('file.txt', function(data) {
                     $('#editor').val(data);
                 });
+                $.get('fileinfo', function(data) {
+                    $('#fileinfo').text(data);
+                });
                 $('#save').click(function() {
                     $.post(window.location.href, {text: $('#editor').val()}, function() {
                         alert('Saved');
@@ -21,8 +24,9 @@
             });
         </script>
         <div style="padding-top: 20px;padding-left: 40px;padding-right: 40px;">
-            <h1 class="">InstantInk</h2>
+            <h1>InstantInk</h1>
             <hr style="margin-top: 0!important;margin-bottom: 1.5rem!important;">
+            <span id="fileinfo" style="margin-bottom: 5px; color: rgb(153 154 156);"></span>
             <textarea id="editor" class="form-control" style="width: 100%;" rows="20"></textarea>
         </div>
         <div style="padding-top: 20px;padding-left: 40px;padding-right: 40px;">

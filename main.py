@@ -25,6 +25,11 @@ try:
                 self.end_headers()
                 with open(args.filepath, 'r') as file:
                     self.wfile.write(file.read().encode())
+            elif parsed_path.path == "/fileinfo":
+                self.send_response(200)
+                self.send_header('Content-type', 'text/plain')
+                self.end_headers()
+                self.wfile.write(args.filepath.encode())
         def do_POST(self):
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
