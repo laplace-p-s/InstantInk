@@ -5,6 +5,9 @@ import os
 from urllib.parse import parse_qs, urlparse
 
 try:
+    APP_NAME = "InstantInk"  # Application Name
+    APP_VERSION = "1.0.0"  # Application Version
+    
     # Parsing command line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('filepath', help="Path to the text file you'd like to edit.")
@@ -43,6 +46,7 @@ try:
 
     # Starting the server
     with socketserver.TCPServer(("", 8000), Handler) as httpd:
+        print(f"{APP_NAME} Ver.{APP_VERSION}")
         print("Serving at: http://localhost:8000")
         httpd.serve_forever()
 except Exception as e:
