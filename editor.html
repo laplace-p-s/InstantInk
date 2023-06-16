@@ -9,7 +9,7 @@
     </head>
     <body style="background-color: rgb(243 244 246);">
         <script>
-            function save_announce(){
+            function save_announce(is_auto){
                 var date = new Date();
                 var Y = date.getFullYear();
                 var M = ("00" + (date.getMonth()+1)).slice(-2);
@@ -18,8 +18,18 @@
                 var m = ("00" + date.getMinutes()).slice(-2);
                 var s = ("00" + date.getSeconds()).slice(-2);
                 var date_text = Y + '/' + M + '/' + D + ' ' + h + ':' + m + ':' + s;
-                $('#saveinfo').text('Saved (' + date_text +')');
+                if(is_auto){
+                    $('#saveinfo').text('Auto Saved (' + date_text +')');
+                }else{
+                    $('#saveinfo').text('Saved (' + date_text +')');
+                }
             };
+            function auto_save(){
+                $.post(window.location.href, {text: $('#editor').val()}, function() {
+                    save_announce(true);
+                });
+            }
+
             $(document).ready(function() {
                 $.get('file.txt', function(data) {
                     $('#editor').val(data);
@@ -29,7 +39,7 @@
                 });
                 $('#save').click(function() {
                     $.post(window.location.href, {text: $('#editor').val()}, function() {
-                        save_announce();
+                        save_announce(false);
                     });
                 });
                 $(window).bind('keydown', function(e) {
@@ -38,12 +48,14 @@
                             case 's':
                                 e.preventDefault();
                                 $.post(window.location.href, {text: $('#editor').val()}, function() {
-                                    save_announce();
+                                    save_announce(false);
                                 });
                                 break;
                         }
                     }
                 });
+                // Auto save every 5 seconds
+                setInterval(auto_save, 5000);
             });
         </script>
         <div style="padding-top: 20px;padding-left: 40px;padding-right: 40px;">
