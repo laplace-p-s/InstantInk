@@ -34,8 +34,9 @@ try:
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             data = parse_qs(post_data.decode())
+            text = data.get('text', [''])[0]
             with open(args.filepath, 'w') as file:
-                file.write(data['text'][0])
+                file.write(text)
             self.send_response(200)
             self.end_headers()
             self.wfile.write(b"Saved")
