@@ -9,6 +9,17 @@
     </head>
     <body style="background-color: rgb(243 244 246);">
         <script>
+            function save_announce(){
+                var date = new Date();
+                var Y = date.getFullYear();
+                var M = ("00" + (date.getMonth()+1)).slice(-2);
+                var D = ("00" + date.getDate()).slice(-2);
+                var h = ("00" + date.getHours()).slice(-2);
+                var m = ("00" + date.getMinutes()).slice(-2);
+                var s = ("00" + date.getSeconds()).slice(-2);
+                var date_text = Y + '/' + M + '/' + D + ' ' + h + ':' + m + ':' + s;
+                $('#saveinfo').text('Saved (' + date_text +')');
+            };
             $(document).ready(function() {
                 $.get('file.txt', function(data) {
                     $('#editor').val(data);
@@ -18,7 +29,7 @@
                 });
                 $('#save').click(function() {
                     $.post(window.location.href, {text: $('#editor').val()}, function() {
-                        alert('Saved');
+                        save_announce();
                     });
                 });
                 $(window).bind('keydown', function(e) {
@@ -27,7 +38,7 @@
                             case 's':
                                 e.preventDefault();
                                 $.post(window.location.href, {text: $('#editor').val()}, function() {
-                                    alert('Saved');
+                                    save_announce();
                                 });
                                 break;
                         }
@@ -38,7 +49,8 @@
         <div style="padding-top: 20px;padding-left: 40px;padding-right: 40px;">
             <h1>InstantInk</h1>
             <hr style="margin-top: 0!important;margin-bottom: 1.5rem!important;">
-            <span id="fileinfo" style="margin-bottom: 5px; color: rgb(153 154 156);"></span>
+            <span id="fileinfo" style="margin-bottom: 5px; color: rgb(153 154 156);margin-right: 10px;"></span>
+            <span id="saveinfo" style="margin-bottom: 5px; color: rgb(153 154 156);"></span>
             <textarea id="editor" class="form-control" style="width: 100%;" rows="20"></textarea>
         </div>
         <div style="padding-top: 20px;padding-left: 40px;padding-right: 40px;">
