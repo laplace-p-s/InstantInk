@@ -21,6 +21,18 @@
                         alert('Saved');
                     });
                 });
+                $(window).bind('keydown', function(e) {
+                    if (e.ctrlKey || e.metaKey) {
+                        switch (String.fromCharCode(e.which).toLowerCase()) {
+                            case 's':
+                                e.preventDefault();
+                                $.post(window.location.href, {text: $('#editor').val()}, function() {
+                                    alert('Saved');
+                                });
+                                break;
+                        }
+                    }
+                });
             });
         </script>
         <div style="padding-top: 20px;padding-left: 40px;padding-right: 40px;">
