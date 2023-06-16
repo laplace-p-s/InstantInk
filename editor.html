@@ -25,10 +25,12 @@
                 }
             };
             function auto_save(){
-                $.post(window.location.href, {text: $('#editor').val()}, function() {
-                    save_announce(true);
-                });
-            }
+                if($('#auto_save_switch').prop("checked")){
+                    $.post(window.location.href, {text: $('#editor').val()}, function() {
+                        save_announce(true);
+                    });
+                }
+            };
 
             $(document).ready(function() {
                 $.get('file.txt', function(data) {
@@ -61,6 +63,10 @@
         <div style="padding-top: 20px;padding-left: 40px;padding-right: 40px;">
             <h1>InstantInk</h1>
             <hr style="margin-top: 0!important;margin-bottom: 1.5rem!important;">
+            <div class="form-check form-switch">
+                <label class="form-check-label" for="auto_save_switch">Auto Save</label>
+                <input class="form-check-input" type="checkbox" id="auto_save_switch" name="auto_save_switch" checked>
+            </div>
             <span id="fileinfo" style="margin-bottom: 5px; color: rgb(153 154 156);margin-right: 10px;"></span>
             <span id="saveinfo" style="margin-bottom: 5px; color: rgb(153 154 156);"></span>
             <textarea id="editor" class="form-control" style="width: 100%;" rows="20"></textarea>
