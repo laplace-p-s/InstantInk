@@ -13,6 +13,9 @@ try:
     parser.add_argument('filepath', help="Path to the text file you'd like to edit.")
     args = parser.parse_args()
 
+    # Convert the filepath to an absolute path
+    args.filepath = os.path.abspath(args.filepath)
+
     class Handler(http.server.SimpleHTTPRequestHandler):
         def do_GET(self):
             parsed_path = urlparse(self.path)
