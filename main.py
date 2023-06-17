@@ -31,6 +31,12 @@ try:
                 self.end_headers()
                 with open(args.filepath, 'r') as file:
                     self.wfile.write(file.read().encode())
+            elif parsed_path.path == "/favicon.ico":
+                self.send_response(200)
+                self.send_header('Content-type', 'image/x-icon')
+                self.end_headers()
+                with open('favicon.ico', 'rb') as file:
+                    self.wfile.write(file.read())
             elif parsed_path.path == "/fileinfo":
                 self.send_response(200)
                 self.send_header('Content-type', 'text/plain')
