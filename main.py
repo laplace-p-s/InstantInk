@@ -48,6 +48,12 @@ try:
                 self.send_header('Content-type', 'text/plain')
                 self.end_headers()
                 self.wfile.write(args.filepath.encode())
+            elif parsed_path.path == "/editor.js":    # This block is added to serve the JS file
+                self.send_response(200)
+                self.send_header('Content-type','application/javascript')
+                self.end_headers()
+                with open('editor.js', 'r') as file:
+                    self.wfile.write(file.read().encode())
         def do_POST(self):
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
