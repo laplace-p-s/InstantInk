@@ -2,11 +2,17 @@ import argparse
 import http.server
 import socketserver
 import os
+import json
 from urllib.parse import parse_qs, urlparse
 
 try:
-    APP_NAME = "InstantInk"  # Application Name
-    APP_VERSION = "1.2.0"  # Application Version
+    # Load configurations from config file
+    with open("config.json", "r") as file:
+        config = json.load(file)
+
+    APP_NAME = config.get("app_name", "InstantInk")
+    APP_VERSION = config.get("app_version", "?.?.?")
+    SERVER_PORT = config.get("server_port", 8000)
     
     # Parsing command line arguments
     parser = argparse.ArgumentParser()
@@ -54,9 +60,9 @@ try:
             self.wfile.write(b"Saved")
 
     # Starting the server
-    with socketserver.TCPServer(("", 8000), Handler) as httpd:
+    with socketserver.TCPServer(("", SERVER_PORT), Handler) as httpd:
         print(f"{APP_NAME} Ver.{APP_VERSION}")
-        print("Serving at: http://localhost:8000")
+        print(f"Serving at: http://localhost:{SERVER_PORT}")
         httpd.serve_forever()
 except Exception as e:
     print(f"An error occurred: {e}")
