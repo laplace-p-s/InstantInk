@@ -20,7 +20,7 @@ This application will satisfy such needs. Please pick up InstantInk and start wr
 InstantInk Ver.1.4.1
 Serving at: http://localhost:8000
 ```
-4. Done! Experience the InstantInk writing experience!  
+4. Done! Experience the magic of InstantInk writing!  
 
 ## Technologies Used
 - Language: Python 3.11.4
