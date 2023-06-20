@@ -2,8 +2,8 @@
 FILENAME="sample.txt"
 
 if [[ -f "$FILENAME" ]]; then
-    python main.py "$FILENAME"
+    python3 main.py "$FILENAME"
 else
     touch "$FILENAME"
-    python main.py "$FILENAME"
+    python3 main.py "$FILENAME"
 fi
