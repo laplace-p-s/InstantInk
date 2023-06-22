@@ -28,3 +28,7 @@ Serving at: http://localhost:8000
 
 ## License
 MIT License
+
+## About me and the community setting of this repository
+- I am a novice when it comes to creating open source repositories. I would be very happy if you could point out anything wrong with the configuration or the way it is written.
+- I am a native speaker of Japanese, but I intentionally try to use English as much as possible with translations. I am a beginner in the repository and I would be very grateful if you could point out any mistakes in the settings or writing of this community repository.
