@@ -3,6 +3,7 @@ import http.server
 import socketserver
 import os
 import json
+import webbrowser
 from urllib.parse import parse_qs, urlparse
 
 try:
@@ -68,7 +69,9 @@ try:
     # Starting the server
     with socketserver.TCPServer(("", SERVER_PORT), Handler) as httpd:
         print(f"{APP_NAME} Ver.{APP_VERSION}")
-        print(f"Serving at: http://localhost:{SERVER_PORT}")
+        url = f"http://localhost:{SERVER_PORT}"
+        print(f"Serving at: {url}")
+        webbrowser.open(url)  # Open the URL in the default browser
         httpd.serve_forever()
 except Exception as e:
     print(f"An error occurred: {e}")
