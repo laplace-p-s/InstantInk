@@ -17,7 +17,7 @@ This application will satisfy such needs. Please pick up InstantInk and start wr
 ```
 3. Check the output message and access it using a web browser or other means:
 ```
-InstantInk Ver.1.4.2
+InstantInk Ver.1.5.0
 Serving at: http://localhost:8000
 ```
 4. Done! Experience the magic of InstantInk writing!  
