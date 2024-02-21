@@ -46,6 +46,6 @@ $(document).ready(function() {
             }
         }
     });
-    // Auto save every 5 seconds
-    setInterval(auto_save, 5000);
+    // Auto save every 10 seconds
+    setInterval(auto_save, 10000);
 });
